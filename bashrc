@@ -90,6 +90,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+#LS_COLORS='di=1;33:ln=36' ; export LS_COLORS;
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
@@ -97,6 +98,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias ls='ls --color=auto'
 alias aws='ssh -i "pantea.pem" ubuntu@ec2-18-204-210-2.compute-1.amazonaws.com'
 alias aws2='ssh ubuntu@44.211.246.196'
 alias azure='ssh sadjad@sadjad-webrtc.westus3.cloudapp.azure.com'

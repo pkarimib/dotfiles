@@ -11,6 +11,7 @@ chsh -s $(which zsh)
 cp bashrc ~/.bashrc
 cp gitconfig ~/.gitconfig
 cp tmux.conf ~/.tmux.conf
+cp git-prompt.sh ~/.git-prompt.sh
 cp vimrc ~/.vimrc
 cp zshrc ~/.zshrc
 
