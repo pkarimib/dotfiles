@@ -57,7 +57,13 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWUNTRACKEDFILES=1
+    GIT_PS1_SHOWUPSTREAM="auto"
+    GIT_PS1_SHOWCOLORHINTS=1
+    source ~/.git-prompt.sh
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[90m\]$(__git_ps1 " (%s)")\[\033[00m\]$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -91,6 +97,11 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias aws='ssh -i "pantea.pem" ubuntu@ec2-18-204-210-2.compute-1.amazonaws.com'
+alias aws2='ssh ubuntu@44.211.246.196'
+alias azure='ssh sadjad@sadjad-webrtc.westus3.cloudapp.azure.com'
+alias mapmaker='pantea@128.30.198.25'
+alias tardy='pkarimib@tardy.csail.mit.edu'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -116,20 +127,36 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export GRB_LICENSE_FILE=/opt/gurobi800/gurobi.lic
-export GUROBI_HOME="/opt/gurobi800/linux64"
-export PATH="${PATH}:${GUROBI_HOME}/bin" 
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
-export GOPATH=/home/ubuntu/implementation
-export PATH=$PATH:$GOPATH/bin
-export PATH=$HOME/omnetpp-5.4.1/bin:$PATH
+export DISPLAY=:99
+export PATH=/home/ubuntu/depot_tools:$PATH
 
-alias lncli-alice="lncli --rpcserver=localhost:10001 --macaroonpath=data/admin.macaroon"
-alias lncli-bob="lncli --rpcserver=localhost:10002 --macaroonpath=data/admin.macaroon"
-alias lncli-charlie="lncli --rpcserver=localhost:10003 --macaroonpath=data/admin.macaroon"
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+unset SUDO_UID SUDO_GID SUDO_USER
 
-export PATH=$HOME/omnetpp-5.6/bin:$HOME/omnetpp-5.6/tools/macosx/bin:$PATH
-export QT_PLUGIN_PATH=$HOME/omnetpp-5.6/tools/macosx/plugins
+# temporary add for NETS project
+#cd /data4/pantea/aiortc
+#conda activate pantea-fom
+#export PYTHONPATH=$PYTHONPATH:$PWD/nets_implementation
+#export PYTHONPATH=$PYTHONPATH:$PWD/lte
+export PATH="/opt/homebrew/anaconda3/bin:$PATH"
+export PATH="$PATH:/Users/pantea/Documents/Github/video_cc/depot_tools"
 
-eval $(ssh-agent)
-ssh-add ~/.ssh/pantea
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:/Users/pantea/.gem/ruby/3.1.0/bin"
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.1.3
