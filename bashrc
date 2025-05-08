@@ -153,12 +153,12 @@ unset SUDO_UID SUDO_GID SUDO_USER
 #conda activate pantea-fom
 #export PYTHONPATH=$PYTHONPATH:$PWD/nets_implementation
 #export PYTHONPATH=$PYTHONPATH:$PWD/lte
-export PATH="/opt/homebrew/anaconda3/bin:$PATH"
-export PATH="$PATH:/Users/pantea/Documents/Github/video_cc/depot_tools"
+#export PATH="/opt/homebrew/anaconda3/bin:$PATH"
+#export PATH="$PATH:/Users/pantea/Documents/Github/video_cc/depot_tools"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="$PATH:/Users/pantea/.gem/ruby/3.1.0/bin"
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.1.3
+#export PATH="$PATH:$HOME/.rvm/bin"
+#export PATH="$PATH:/Users/pantea/.gem/ruby/3.1.0/bin"
+#source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+#source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+#chruby ruby-3.1.3
