@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
-    name = vibhaa
-    email = vibhaa@mit.edu
+    name = pantea
+    email = pkarimib@mit.edu
 
 [color]
     ui = auto
